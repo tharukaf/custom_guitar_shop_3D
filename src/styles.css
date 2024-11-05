@@ -5,3 +5,8 @@ body,
   width: 100%;
   margin: unset;
 }
+
+canvas {
+  height: 100%;
+}
+
