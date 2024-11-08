@@ -2,73 +2,51 @@ import { useLoader } from "@react-three/fiber";
 import PropTypes from 'prop-types';
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
+import React from 'react'
+import { useGLTF } from '@react-three/drei'
+
 Model.propTypes = {
     guitar: PropTypes.object.isRequired,
-    changeGuitarConfig: PropTypes.func.isRequired,
 }
 
-export default function Model({ guitar }) {
-    const gltf = useLoader(GLTFLoader, "./guitar.gltf");
-    gltf.scene.position.y = -1.5;
+export default function Model(props) {
+    const { nodes, materials } = useGLTF('/guitar.gltf')
 
-    if (guitar.orientationLeft === true) {
-        gltf.scene.scale.set(-1 * 0.006, 0.006, 0.006);
-    } else {
-        gltf.scene.scale.set(0.006, 0.006, 0.006);
-    }
-
-    // 25 is knobs
-    // 44 is head
-    // 26 is neck
-    // 24 is body
-    // 28 is bracket around pickups
-    // 29 is pickups
-    // 30 is hardware
-    // 39 is graphics on neck
-    // 40 is body binding
-
-    console.log(gltf.scene);
-    gltf.scene.traverse((child) => {
-        if (child.isMesh) {
-            console.log(child.id, child.material.color);
-            // id: 24 is the body of the guitar
-            if (child.id === 24) {
-                child.material.color.set(guitar.body.color);
-            }
-            // id: 25 is the neck of the guitar
-            if (child.id === 26) {
-                child.material.color.set(guitar.neck.color);
-            }
-            // id: 44 is the head of the guitar
-            if (child.id === 44) {
-                // console.log("head", child.material.color);
-                child.material.color.set(guitar.headstock.color);
-            }
-            // id: 28 & 29 is the pickups of the guitar
-            if (child.id === 29) {
-                child.material.color.set(guitar.pickups.color);
-            }
-            // id: 25 is the knobs of the guitar
-            if (child.id === 25) {
-                child.material.color.set(guitar.knobs.color);
-            }
-            // id: 30 are the hardware of the guitar
-            if (child.id === 30 || child.id === 28) {
-                child.material.color.set(guitar.hardware.color);
-            }
-            // id: 39 is the graphics on the neck of the guitar
-            if (child.id === 39) {
-                child.material.color.set(guitar.graphics.color);
-            }
-            // id: 40 is the binding on the body of the guitar
-            if (child.id === 40) {
-                child.material.color.set(guitar.binding.color);
-            }
-        }
-    });
+    // materials['17800'].color = guitar.body.color;
+    let guitar = props.guitar;
+    let modelScale = 0.0063;
     return (
-        <>
-            <primitive object={gltf.scene} scale={0.006} />
-        </>
-    );
+        // generated with https://github.com/pmndrs/gltfjsx
+        <group {...props} dispose={null}>
+            <group rotation={[-Math.PI / 2, 0, 0]} scale={
+                guitar.orientationLeft
+                    ? [-1 * modelScale, modelScale, modelScale]
+                    : modelScale} position={[0, -1.5, 0]}>
+                <mesh geometry={nodes.Object_2.geometry} material={materials['17800']} material-color={guitar.body.color} />
+                <mesh geometry={nodes.Object_3.geometry} material={materials['236241239']} material-color={guitar.knobs.color} />
+                <mesh geometry={nodes.Object_4.geometry} material={materials['24011441']} material-color={guitar.neck.color} />
+                <mesh geometry={nodes.Object_5.geometry} material={materials['245245245']} />
+                <mesh geometry={nodes.Object_6.geometry} material={materials.material} material-color={guitar.hardware.color} />
+                <mesh geometry={nodes.Object_7.geometry} material={materials['000_1']} material-color={guitar.pickups.color} />
+                <mesh geometry={nodes.Object_8.geometry} material={materials['190188186']} />
+                <mesh geometry={nodes.Object_9.geometry} material={materials['190188186']} />
+                <mesh geometry={nodes.Object_10.geometry} material={materials['190188186']} material-color={guitar.hardware.color} />
+                <mesh geometry={nodes.Object_11.geometry} material={materials['190188186']} />
+                <mesh geometry={nodes.Object_12.geometry} material={materials['190188186']} material-color={guitar.hardware.color} />
+                <mesh geometry={nodes.Object_13.geometry} material={materials['190188186']} />
+                <mesh geometry={nodes.Object_14.geometry} material={materials['190188186']} />
+                <mesh geometry={nodes.Object_15.geometry} material={materials['190188186']} />
+                <mesh geometry={nodes.Object_16.geometry} material={materials['191191191']} />
+                <mesh geometry={nodes.Object_17.geometry} material={materials['231214172']} material-color={guitar.graphics.color} />
+                <mesh geometry={nodes.Object_18.geometry} material={materials['237207181']} material-color={guitar.binding.color} />
+                <mesh geometry={nodes.Object_19.geometry} material={materials['255128191']} />
+                <mesh geometry={nodes.Object_20.geometry} material={materials['255255255']} />
+                <mesh geometry={nodes.Object_21.geometry} material={materials['255255255']} />
+                <mesh geometry={nodes.Object_22.geometry} material={materials.material_12} material-color={guitar.headstock.color} />
+                <mesh geometry={nodes.Object_23.geometry} material={materials['555_1']} />
+            </group>
+        </group>
+    )
 }
+
+useGLTF.preload('/guitar.gltf')

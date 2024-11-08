@@ -1,42 +1,28 @@
-import { grayscale } from "three/webgpu";
 
 export const initGuitarConfig = {
   orientationLeft: false,
   body: {
-    color: "red",
+    color: "#FF0000", // red
   },
   neck: {
     color: "#141313",
   },
   headstock: {
-    color: "black",
+    color: "#000000", // black
   },
   pickups: {
-    color: "black",
+    color: "#000000", // black
   },
   knobs: {
-    color: "black",
+    color: "#000000", // black
   },
   hardware: {
-    color: "silver",
+    color: "#C0C0C0", // silver
   },
   binding: {
-    color: "black",
+    color: "#FFFFEE",
   },
   graphics: {
-    color: "silver",
+    color: "#C0C0C0", // silver
   },
 }
-
-// b
-// :
-// 0.019608
-// g
-// :
-// 0.019608
-// isColor
-// :
-// true
-// r
-// :
-// 0.019608

@@ -1,5 +1,3 @@
-
-
 import { useState } from "react";
 import Canvas3D from "./components/canvas3d";
 import "./App.css";
@@ -9,7 +7,6 @@ import { initGuitarConfig } from "./util/initGuitar.mjs";
 import GlassmorphicSection from "./components/glassmorphicSection";
 import Switch from '@mui/material/Switch';
 import { Typography, Button } from "@mui/material";
-
 
 export default function App() {
   const [background, setBackground] = useState("white");
@@ -27,16 +24,14 @@ export default function App() {
     setGuitar({ ...guitar, orientationLeft: event.target.checked });
   };
 
-
   return (
     <div className="App" style={{ height: "100%" }}>
-      <header
-        id="header"
-      >
+      <header id="header">
         <Typography variant="h3">Custom Guitar Builder</Typography>
       </header>
       <div className="main-grid">
-        <Canvas3D background={background}
+        <Canvas3D
+          background={background}
           guitar={guitar}
           changeGuitarConfig={changeGuitarConfig}
         />
@@ -63,7 +58,6 @@ export default function App() {
                   />
                 ))}
                 <input type="color" value={guitar.bodyColor} onChange={(e) => changeGuitarConfig({ body: { color: e.target.value } })} />
-
               </div>
             </GlassmorphicSection>
             <GlassmorphicSection title="Neck Material">
@@ -105,13 +99,13 @@ export default function App() {
               <div>
                 {[{
                   name: "Black",
-                  color: "black",
+                  color: "#000000",
                 }, {
                   name: "Silver",
-                  color: "silver",
+                  color: "#C0C0C0",
                 }, {
                   name: "Gold",
-                  color: "gold",
+                  color: "#FFD700",
                 }].map((material) => (
                   <Button
                     key={material.color}
@@ -128,10 +122,10 @@ export default function App() {
                   color: "#141313",
                 }, {
                   name: "Silver",
-                  color: "silver",
+                  color: "#C0C0C0",
                 }, {
                   name: "Gold",
-                  color: "gold",
+                  color: "#FFD700",
                 }].map((material) => (
                   <Button
                     key={material.color}
@@ -145,16 +139,16 @@ export default function App() {
               <div>
                 {[{
                   name: "Black",
-                  color: "black",
+                  color: "#000000",
                 }, {
                   name: "Silver",
-                  color: "silver",
+                  color: "#C0C0C0",
                 }, {
                   name: "White",
-                  color: "White",
+                  color: "#FFFFFF",
                 }, {
                   name: "Gold",
-                  color: "gold",
+                  color: "#FFD700",
                 }].map((material) => (
                   <Button
                     key={material.color}
@@ -166,20 +160,18 @@ export default function App() {
               </div>
             </GlassmorphicSection>
             <GlassmorphicSection title="Binding Color">
-
-
               {[{
                 name: "Black",
-                color: "black",
+                color: "#000000",
               }, {
                 name: "Silver",
-                color: "silver",
+                color: "#C0C0C0",
               }, {
                 name: "White",
-                color: "White",
+                color: "#FFFFFF",
               }, {
                 name: "Gold",
-                color: "gold",
+                color: "#FFD700",
               }].map((material) => (
                 <Button
                   key={material.color}
@@ -194,7 +186,3 @@ export default function App() {
     </div>
   );
 }
-
-
-
-
