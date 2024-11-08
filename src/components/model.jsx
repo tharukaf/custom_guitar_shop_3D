@@ -1,8 +1,4 @@
-import { useLoader } from "@react-three/fiber";
 import PropTypes from 'prop-types';
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-
-import React from 'react'
 import { useGLTF } from '@react-three/drei'
 
 Model.propTypes = {

@@ -8,6 +8,7 @@ export default function GlassmorphicSection({ children, ...props }) {
         <Typography variant="h4" component="h2">
           {props.title}
         </Typography>
+
         {children}
       </div>
     </div>

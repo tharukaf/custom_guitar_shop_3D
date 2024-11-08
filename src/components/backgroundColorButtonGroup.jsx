@@ -1,4 +1,5 @@
 import PropTypes from "prop-types"
+import { Typography, Button } from "@mui/material"
 
 BackgroundColorButtons.propTypes = {
   changeBackground: PropTypes.func.isRequired,
@@ -7,33 +8,36 @@ BackgroundColorButtons.propTypes = {
 export default function BackgroundColorButtons({ changeBackground }) {
   return (
     <div className="colorPicker">
-      <button
+      <Typography sx={
+        { fontSize: "12px", marginRight: "10px" }
+      }>Change Backdrop Color</Typography>
+      <Button
         style={{
           backgroundColor: "white",
-          width: "20px",
-          height: "20px",
+          width: "10px",
+          height: "10px",
           border: "1px solid black",
         }}
         onClick={() => changeBackground("white")}
-      ></button>
-      <button
+      ></Button>
+      <Button
         style={{
           backgroundColor: "black",
-          width: "20px",
-          height: "20px",
+          width: "10px",
+          height: "10px",
           border: "1px solid black",
         }}
         onClick={() => changeBackground("black")}
-      ></button>
-      <button
+      ></Button>
+      <Button
         style={{
           backgroundColor: "grey",
-          width: "20px",
-          height: "20px",
+          width: "10px",
+          height: "10px",
           border: "1px solid black",
         }}
         onClick={() => changeBackground("grey")}
-      ></button>
+      ></Button>
     </div>
   );
 }
