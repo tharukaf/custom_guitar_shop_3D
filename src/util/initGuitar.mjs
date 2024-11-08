@@ -1,5 +1,5 @@
 export const initGuitarConfig = {
-  orientation: "right",
+  orientationLeft: false,
   body: {
     color: "red",
   },
