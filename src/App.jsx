@@ -8,7 +8,7 @@ import BackgroundColorButtons from "./components/backgroundColorButtonGroup";
 import { initGuitarConfig } from "./util/initGuitar.mjs";
 import GlassmorphicSection from "./components/glassmorphicSection";
 import Switch from '@mui/material/Switch';
-import { Typography } from "@mui/material";
+import { Typography, Button } from "@mui/material";
 
 
 export default function App() {
@@ -27,9 +27,6 @@ export default function App() {
     setGuitar({ ...guitar, orientationLeft: event.target.checked });
   };
 
-  const handleGuitarBodyColorChange = (color) => {
-    setGuitar({ ...guitar, body: { color: color } });
-  }
 
   return (
     <div className="App" style={{ height: "100%" }}>
@@ -57,9 +54,9 @@ export default function App() {
               </div>
             </GlassmorphicSection>
             <GlassmorphicSection title="Body Color">
-              <div className="color-picker">
+              <div>
                 {["#FF5733", "#33FF57", "#3357FF", "#F333FF", "#FF33A1", "#33FFF5", "#F5FF33", "#FF8C33", "#8C33FF", "#33FF8C"].map((color) => (
-                  <button
+                  <Button
                     key={color}
                     style={{ backgroundColor: color, width: "10px", height: "30px", margin: "5px", border: "none", cursor: "pointer" }}
                     onClick={() => changeGuitarConfig({ body: { color: color } })}
@@ -70,19 +67,126 @@ export default function App() {
               </div>
             </GlassmorphicSection>
             <GlassmorphicSection title="Neck Material">
-              this is a glassmorphic section
+              <div>
+                {[{
+                  name: "Ebony",
+                  color: "#141313",
+                }, {
+                  name: "Maple",
+                  color: "#d4ad72",
+                }, {
+                  name: "Rosewood",
+                  color: "#311216",
+                }].map((wood) => (
+                  <button
+                    key={wood.color}
+                    style={{ margin: "5px", padding: "10px", cursor: "pointer" }}
+                    onClick={() => changeGuitarConfig({ neck: { color: wood.color } })}
+                  >
+                    {wood.name}
+                  </button>
+                ))}
+              </div>
             </GlassmorphicSection>
             <GlassmorphicSection title="Headstock Color">
-              this is a glassmorphic section
+              <div>
+                {["#FF5733", "#33FF57", "#3357FF", "#F333FF", "#FF33A1", "#33FFF5", "#F5FF33", "#FF8C33", "#8C33FF", "#33FF8C"].map((color) => (
+                  <Button
+                    key={color}
+                    style={{ backgroundColor: color, width: "10px", height: "30px", margin: "5px", border: "none", cursor: "pointer" }}
+                    onClick={() => changeGuitarConfig({ headstock: { color: color } })}
+                  />
+                ))}
+                <label htmlFor="headstockColor">Custom Color</label>
+                <input id="headstockColor" type="color" value={guitar.headstockColor} onChange={(e) => changeGuitarConfig({ headstock: { color: e.target.value } })} />
+              </div>
             </GlassmorphicSection>
             <GlassmorphicSection title="Pickup Cover Material">
-              this is a glassmorphic section
+              <div>
+                {[{
+                  name: "Black",
+                  color: "black",
+                }, {
+                  name: "Silver",
+                  color: "silver",
+                }, {
+                  name: "Gold",
+                  color: "gold",
+                }].map((material) => (
+                  <Button
+                    key={material.color}
+                    style={{ backgroundColor: material.color, width: "30px", height: "30px", margin: "5px", border: "none", cursor: "pointer" }}
+                    onClick={() => changeGuitarConfig({ pickups: { color: material.color } })}
+                  />
+                ))}
+              </div>
             </GlassmorphicSection>
-            <GlassmorphicSection title="Pickup Cover Material">
-              this is a glassmorphic section
+            <GlassmorphicSection title="Hardware Material">
+              <div>
+                {[{
+                  name: "Black",
+                  color: "#141313",
+                }, {
+                  name: "Silver",
+                  color: "silver",
+                }, {
+                  name: "Gold",
+                  color: "gold",
+                }].map((material) => (
+                  <Button
+                    key={material.color}
+                    style={{ backgroundColor: material.color, width: "30px", height: "30px", margin: "5px", border: "none", cursor: "pointer" }}
+                    onClick={() => changeGuitarConfig({ hardware: { color: material.color } })}
+                  />
+                ))}
+              </div>
             </GlassmorphicSection>
-            <GlassmorphicSection title="Pickup Cover Material">
-              this is a glassmorphic section
+            <GlassmorphicSection title="Neck Inlay Color">
+              <div>
+                {[{
+                  name: "Black",
+                  color: "black",
+                }, {
+                  name: "Silver",
+                  color: "silver",
+                }, {
+                  name: "White",
+                  color: "White",
+                }, {
+                  name: "Gold",
+                  color: "gold",
+                }].map((material) => (
+                  <Button
+                    key={material.color}
+                    style={{ backgroundColor: material.color, width: "30px", height: "30px", margin: "5px", border: "none", cursor: "pointer" }}
+                    onClick={() => changeGuitarConfig({ graphics: { color: material.color } })}
+                  />
+                ))}
+                <input type="color" value={guitar.graphicsColor} onChange={(e) => changeGuitarConfig({ graphics: { color: e.target.value } })} />
+              </div>
+            </GlassmorphicSection>
+            <GlassmorphicSection title="Binding Color">
+
+
+              {[{
+                name: "Black",
+                color: "black",
+              }, {
+                name: "Silver",
+                color: "silver",
+              }, {
+                name: "White",
+                color: "White",
+              }, {
+                name: "Gold",
+                color: "gold",
+              }].map((material) => (
+                <Button
+                  key={material.color}
+                  style={{ backgroundColor: material.color, width: "30px", height: "30px", margin: "5px", border: "none", cursor: "pointer" }}
+                  onClick={() => changeGuitarConfig({ binding: { color: material.color } })}
+                />
+              ))}
             </GlassmorphicSection>
           </Container>
         </div>
